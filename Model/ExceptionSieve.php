@@ -70,11 +70,16 @@ class ExceptionSieve
         $lineNumber = $exception->getLine();
 
         //handle error catched by magento, TODO
-        $magentoErrorHandler = '/vendor/magento/framework/App/ErrorHandler.php';
-        if (substr_compare($fileName, $magentoErrorHandler, -strlen($magentoErrorHandler)) === 0 && $lineNumber == 61) {
-            $trace = $exception->getTrace();
-            $fileName = empty($trace[0]['file']) ? $fileName : $trace[0]['file'];
-            $lineNumber = empty($trace[0]['line']) ? $lineNumber : $trace[0]['line'];
+        $magentoErrorHandlerPaths = [
+            ['/vendor/magento/framework/App/ErrorHandler.php', 61],
+            ['/vendor/magento/magento2ce/lib/internal/Magento/Framework/App/ErrorHandler.php', 61]
+        ];
+        foreach ($magentoErrorHandlerPaths as $magentoErrorHandler) {
+            if (substr_compare($fileName, $magentoErrorHandler[0], -strlen($magentoErrorHandler[0])) === 0 && $lineNumber == $magentoErrorHandler[1]) {
+                $trace = $exception->getTrace();
+                $fileName = empty($trace[0]['file']) ? $fileName : $trace[0]['file'];
+                $lineNumber = empty($trace[0]['line']) ? $lineNumber : $trace[0]['line'];
+            }
         }
 
         $this->insertToDb(
