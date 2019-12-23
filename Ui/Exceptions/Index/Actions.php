@@ -1,6 +1,7 @@
 <?php
 namespace Fsw\ErrorSieve\Ui\Exceptions\Index;
 
+use Fsw\ErrorSieve\Model\Exception;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -26,6 +27,7 @@ class Actions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
+
                 $item[$this->getData('name')] = [
                     'view'   => [
                         'href'  => $this->urlBuilder->getUrl('fsw_errorsieve/exceptions/view', [
@@ -33,16 +35,32 @@ class Actions extends Column
                         ]),
                         'label' => __('View'),
                     ],
-                    /*'delete' => [
-                        'href'    => $this->urlBuilder->getUrl('report/email/delete', [
-                            EmailInterface::ID => $item[EmailInterface::ID],
-                        ]),
-                        'label'   => __('Delete'),
-                        'confirm' => [
-                            'title' => __('Delete email?'),
-                        ],
-                    ],*/
                 ];
+
+                switch ($item['status']) {
+                    case Exception::STATUS_NEW;
+                    case Exception::STATUS_RECURRING;
+                        $actions = ['acknowledge', 'fixpending', 'fixdeployed'];
+                        break;
+                    case Exception::STATUS_ACKNOWLEDGED;
+                    case Exception::STATUS_FIX_PENDING;
+                        $actions = ['fixdeployed', 'reopen'];
+                        break;
+                    case Exception::STATUS_FIX_DEPLOYED;
+                        $actions = ['fixpending', 'reopen'];
+                        break;
+                }
+                foreach ($actions as $action) {
+                    $item[$this->getData('name')][$action] = [
+                        'href'    => $this->urlBuilder->getUrl('fsw_errorsieve/exceptions/' . $action, [
+                            'id' => $item['id'],
+                        ]),
+                        'label'   => $action,
+                        'confirm' => [
+                            'title' => __('Are you sure?'),
+                        ],
+                    ];
+                }
             }
         }
 

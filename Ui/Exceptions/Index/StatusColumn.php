@@ -20,9 +20,9 @@ class StatusColumn extends Column
                 $statusClasses = [
                     Exception::STATUS_NEW => 'critical',
                     Exception::STATUS_RECURRING => 'critical',
-                    Exception::STATUS_ACKNOWLEDGED => 'major',
+                    Exception::STATUS_ACKNOWLEDGED => 'minor',
                     Exception::STATUS_FIX_PENDING => 'notice',
-                    Exception::STATUS_FIX_DEPLOYED => 'minor'
+                    Exception::STATUS_FIX_DEPLOYED => 'notice'
                 ];
                 $item[$fieldName] = "<span class=\"grid-severity-{$statusClasses[$status]}\"><span>" . Exception::STATUS_MAP[$status] . "</span></span>";
             }
