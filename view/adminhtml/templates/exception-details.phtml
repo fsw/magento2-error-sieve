@@ -1,0 +1,42 @@
+<?php /** @var \Fsw\ErrorSieve\Block\Adminhtml\Exceptions\View $block */?>
+<div class="page-main-actions">
+    <div data-mage-init='{"floatingHeader": {}}' class="page-actions"  data-ui-id="page-actions-toolbar-content-header" >
+        <button id="back" title="Back" type="button" class="action-default scalable back" onclick="setLocation('<?php echo $block->getBackUrl() ?>')"  data-ui-id="archive-buttons-back-button" >
+            <span>Back</span>
+        </button>
+    </div>
+</div>
+
+<h1>
+    <?php echo $block->getException()->getFilename(); ?>:<?php echo $block->getException()->getLine(); ?> exception [<?php echo $block->getException()->getId(); ?>]:
+    "<?php echo $block->getException()->getFirstMessage(); ?>"
+    <span class="grid-severity-notice"><span><?php echo $block->getException()->getStatusString(); ?></span></span>
+</h1>
+
+<h3>current count: <?php echo $block->getException()->getCurrentCount(); ?></h3>
+<h3>total count: <?php echo $block->getException()->getTotalCount(); ?></h3>
+
+
+<h1>first occurence</h1>
+<?php echo htmlspecialchars($block->getException()->getFirstTime()); ?>
+<br/>
+<?php echo htmlspecialchars($block->getException()->getFirstMessage()); ?>
+<br/>
+<strong>stack</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getFirstStack()); ?></pre>
+<strong>request</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getFirstRequest()); ?></pre>
+
+<h1>last occurence</h1>
+<?php echo htmlspecialchars($block->getException()->getLastTime()); ?>
+<br/>
+<?php echo htmlspecialchars($block->getException()->getLastMessage()); ?>
+<br/>
+<strong>stack</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getLastStack()); ?></pre>
+<strong>request</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getLastRequest()); ?></pre>
+
+
+
+

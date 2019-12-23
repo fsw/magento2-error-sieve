@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Fsw_ErrorSieve::exceptions" title="Errors Sieve" module="Fsw_ErrorSieve" sortOrder="100" parent="Magento_Backend::system_tools" action="fsw_errorsieve/exceptions/" resource="Fsw_ErrorSieve::exceptions"/>
+    </menu>
+</config>

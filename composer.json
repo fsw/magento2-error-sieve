@@ -1,0 +1,21 @@
+{
+  "name": "fsw/magento2-error-sieve",
+  "description": "Magento 2 Error Sieve",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Francio",
+      "homepage": "http://francio.pl/"
+    }
+  ],
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": {
+      "Fsw\\ErrorSieve\\": ""
+    }
+  },
+  "require": {
+    "ext-json": "*",
+    "ext-pdo": "*"
+  }
+}

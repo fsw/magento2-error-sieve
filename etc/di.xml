@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\AppInterface">
+        <plugin name="fsw_errorsieve_catch_app_exceptions" type="Fsw\ErrorSieve\Plugin\CatchAppExceptions" />
+    </type>
+
+    <type name="Magento\Framework\Webapi\ErrorProcessor">
+        <plugin name="fsw_errorsieve_catch_webapi_exceptions" type="Fsw\ErrorSieve\Plugin\CatchWebapiExceptions" />
+    </type>
+
+    <type name="Magento\Framework\Logger\Handler\Exception">
+        <plugin name="fsw_errorsieve_catch_logged_exceptions" type="Fsw\ErrorSieve\Plugin\CatchLoggedExceptions" />
+    </type>
+
+    <type name="Magento\Framework\GraphQl\Query\QueryProcessor">
+        <plugin name="fsw_errorsieve_catch_graphql_errors" type="Fsw\ErrorSieve\Plugin\CatchGraphQLErrors" />
+    </type>
+
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="fsw:errors:state" xsi:type="object">Fsw\ErrorSieve\Console\Status</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="fsw_errorsieve_exceptions_index_data_source" xsi:type="string">Fsw\ErrorSieve\Model\Resource\Exception\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Fsw\ErrorSieve\Model\Resource\Exception\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">fsw_sieved_errors</argument>
+            <argument name="resourceModel" xsi:type="string">Fsw\ErrorSieve\Model\Resource\Exception</argument>
+        </arguments>
+    </virtualType>
+
+</config>
