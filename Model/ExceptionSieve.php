@@ -82,12 +82,23 @@ class ExceptionSieve
             }
         }
 
+        $message = $exception->getMessage();
+        $trace = '';
+        while ($exception) {
+            $trace .= empty($trace) ? "" : "\nprevious:\n";
+            $trace .= $exception->getMessage();
+            $trace .= "\nstack:\n";
+            $trace .= $exception->getTraceAsString();
+
+            $exception = $exception->getPrevious();
+        }
+
         $this->insertToDb(
             $this->getSourceName(),
             $fileName,
             $lineNumber,
-            $exception->getMessage(),
-            $exception->getTraceAsString(),
+            $message,
+            $trace,
             json_encode($_SERVER, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT)
         );
 
