@@ -18,6 +18,11 @@
         <plugin name="fsw_errorsieve_catch_graphql_errors" type="Fsw\ErrorSieve\Plugin\CatchGraphQLErrors" />
     </type>
 
+    <type name="Fsw\CronRunner\Console\Base">
+        <plugin name="fsw_errorsieve_catch_cronrunner_exceptions" type="Fsw\ErrorSieve\Plugin\CatchCronRunnerExceptions" />
+    </type>
+
+
 
 
     <type name="Magento\Framework\Console\CommandList">
