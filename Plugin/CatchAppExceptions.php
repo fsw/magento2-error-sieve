@@ -11,10 +11,7 @@ class CatchAppExceptions
 {
     public function aroundCatchException(AppInterface $subject, callable $proceed, Bootstrap $bootstrap, Exception $exception)
     {
-        $e = $exception;
-        do {
-            ExceptionSieve::saveException($e);
-        } while ($e = $e->getPrevious());
+        ExceptionSieve::saveException($exception);
         return $proceed($bootstrap, $exception);
     }
 }

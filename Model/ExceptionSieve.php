@@ -7,9 +7,13 @@ class ExceptionSieve
     /**
      * @param \Exception $exception
      */
-    public static function saveException(\Exception $exception)
+    public static function saveException(\Throwable $exception)
     {
-        (new static())->save($exception);
+        $sieve = new static();
+        while ($exception !== null) {
+            $sieve->save($exception);
+            $exception = $exception->getPrevious();
+        }
     }
 
     private function getSourceName()
@@ -64,7 +68,7 @@ class ExceptionSieve
         ]);
     }
 
-    private function save(\Exception $exception)
+    private function save(\Throwable $exception)
     {
         $fileName = $exception->getFile();
         $lineNumber = $exception->getLine();
