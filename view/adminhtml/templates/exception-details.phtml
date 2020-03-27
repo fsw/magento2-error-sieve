@@ -7,27 +7,18 @@
     </div>
 </div>
 
-<h1>
-    <?php echo $block->getException()->getFilename(); ?>:<?php echo $block->getException()->getLine(); ?> exception [<?php echo $block->getException()->getId(); ?>]:
-    "<?php echo $block->getException()->getFirstMessage(); ?>"
+<h2>
+    <?php echo $block->getException()->getFilename(); ?>:<?php echo $block->getException()->getLine(); ?> exception [<?php echo $block->getException()->getId(); ?>]
     <span class="grid-severity-notice"><span><?php echo $block->getException()->getStatusString(); ?></span></span>
-</h1>
+</h2>
 
 <h3>current count: <?php echo $block->getException()->getCurrentCount(); ?></h3>
 <h3>total count: <?php echo $block->getException()->getTotalCount(); ?></h3>
 
-
-<h1>first occurence</h1>
-<?php echo htmlspecialchars($block->getException()->getFirstTime()); ?>
-<br/>
-<?php echo htmlspecialchars($block->getException()->getFirstMessage()); ?>
-<br/>
-<strong>stack</strong>
-<pre><?php echo htmlspecialchars($block->getException()->getFirstStack()); ?></pre>
-<strong>request</strong>
-<pre><?php echo htmlspecialchars($block->getException()->getFirstRequest()); ?></pre>
-
-<h1>last occurence</h1>
+<h2>last occurence</h2>
+<h1>
+    <?php echo $block->getException()->getLastMessage(); ?>
+</h1>
 <?php echo htmlspecialchars($block->getException()->getLastTime()); ?>
 <br/>
 <?php echo htmlspecialchars($block->getException()->getLastMessage()); ?>
@@ -37,6 +28,17 @@
 <strong>request</strong>
 <pre><?php echo htmlspecialchars($block->getException()->getLastRequest()); ?></pre>
 
-
+<h2>first occurence</h2>
+<h1>
+    <?php echo $block->getException()->getFirstMessage(); ?>
+</h1>
+<?php echo htmlspecialchars($block->getException()->getFirstTime()); ?>
+<br/>
+<?php echo htmlspecialchars($block->getException()->getFirstMessage()); ?>
+<br/>
+<strong>stack</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getFirstStack()); ?></pre>
+<strong>request</strong>
+<pre><?php echo htmlspecialchars($block->getException()->getFirstRequest()); ?></pre>
 
 
