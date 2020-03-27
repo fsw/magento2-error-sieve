@@ -1,8 +1,6 @@
 <?php
 
-namespace Fsw\ErrorSieve\Api;
-
-use Fsw\ErrorSieve\Model\Status;
+namespace Fsw\ErrorSieve\Model;
 
 class Exceptions
 {

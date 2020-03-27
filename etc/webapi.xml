@@ -2,7 +2,7 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/errorsieve" method="GET">
-        <service class="Fsw\ErrorSieve\Api\Exceptions" method="getStatus" />
+        <service class="Fsw\ErrorSieve\Api\ExceptionsInterface" method="getStatus" />
         <resources>
             <resource ref="anonymous"/>
         </resources>
