@@ -52,6 +52,12 @@ class FilenameColumn extends Column
                 if (substr($filename, 0, strlen($prefix)) == $prefix) {
                     $filename = substr($filename, strlen($prefix));
                 }
+                $lengthCap = 30;
+                if (strlen($filename) > $lengthCap) {
+                    $filename = '<span title="' . htmlspecialchars($filename) . '">...' . htmlspecialchars(substr($filename, strlen($filename) - $lengthCap)) . '</span>';
+                } else {
+                    $filename = htmlspecialchars($filename);
+                }
                 $item[$fieldName] = $filename;
             }
         }
