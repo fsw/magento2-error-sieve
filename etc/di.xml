@@ -16,7 +16,7 @@
         <plugin name="fsw_errorsieve_catch_logged_exceptions" type="Fsw\ErrorSieve\Plugin\CatchLoggedExceptions" />
     </type>
 
-    <preference for="Magento\Framework\GraphQl\Query\ErrorHandlerInterface" type="Fsw\ErrorSieve\GraphQl\ErrorHandler" />
+    <!--preference for="Magento\Framework\GraphQl\Query\ErrorHandlerInterface" type="Fsw\ErrorSieve\GraphQl\ErrorHandler" /-->
 
     <type name="Fsw\CronRunner\Console\Base">
         <plugin name="fsw_errorsieve_catch_cronrunner_exceptions" type="Fsw\ErrorSieve\Plugin\CatchCronRunnerExceptions" />
