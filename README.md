@@ -8,5 +8,15 @@ It merges exceptions using filename and line number on witch error happened and 
 
 This way you can focus on exceptions by volume.
 
-It also adds Admin Panel view in "System" -> "Tools" -> "Errors Sieve" with simple management of issues.
+## Installation
+
+```
+composer require fsw2/magento2-error-sieve
+php bin/magento module:enable Fsw_ErrorSieve
+php bin/magento setup:upgrade
+```
+
+## Admin Panel
+
+Module adds its view in `System` > `Tools` > `Errors Sieve` with simple management of issues.
 
