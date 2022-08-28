@@ -5,7 +5,7 @@ namespace Fsw\ErrorSieve\Api;
 interface ExceptionsInterface
 {
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getStatus();
 }
