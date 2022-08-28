@@ -1,7 +1,7 @@
 {
   "name": "fsw2/magento2-error-sieve",
   "description": "Magento 2 Error Sieve",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "BSD-2-Clause",
   "authors": [
     {
